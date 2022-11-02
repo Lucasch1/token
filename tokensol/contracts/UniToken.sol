@@ -3,7 +3,7 @@
 
 pragma solidity ^0.8.17;
 
-import "../node_modules/@openzeppelin/contracts/token/ERC20";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
@@ -13,6 +13,7 @@ contract UniToken is ERC20Capped, ERC20Burnable {
 
     modifier onlyOwner {
         require(msg.sender == owner, "Only the owner cal all this function");
+        _;
     }
 
     constructor(uint256 cap, uint256 reward) ERC20("UniToken", "UNT") ERC20Capped(cap * (10**decimals())){
